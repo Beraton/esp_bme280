@@ -24,7 +24,7 @@ void connect() {
   WiFi.begin(ssid, password);
 
   unsigned long wifiConnectStart = millis();
-
+ 
   while (WiFi.status() != WL_CONNECTED) {
     if (WiFi.status() == WL_CONNECT_FAILED) {
       Serial.println("Failed to connect to WiFi");
@@ -39,6 +39,7 @@ void connect() {
       return;
     }
   }
+  
   Serial.println();
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
@@ -57,6 +58,8 @@ void connect() {
 }
 
 void setup() {
+  uint64_t  sleepTime = 0x124F80;
+  
   Serial.begin(115200);
   Serial.setTimeout(2000);
 
@@ -88,10 +91,11 @@ void setup() {
  
   Serial.println(msg);
   client.publish(mqttTopic, (char*) msg.c_str());
-  
 
+  //Small delay required for ESP to be able to publish msg to broker
   delay(2000);
-  ESP.deepSleep(20e6);
+  
+  ESP.deepSleep(12e8);
 }
 
 void loop() {

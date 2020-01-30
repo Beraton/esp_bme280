@@ -4,13 +4,13 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 
-const char* ssid = "ppi";
-const char* password = "intel+tech";
+const char* ssid = "ssid";
+const char* password = "password";
 
-const char* mqttServer = "10.3.1.109";
-const int mqttPort = 1883;
-const char* clientID = "ESP8266";
-const char* mqttTopic = "esp/test";
+const char* mqttServer = "serverIP";
+const int mqttPort = mqttPort;
+const char* clientID = "clientID";
+const char* mqttTopic = "mqttTopic";
 
 WiFiClient espClient;
 PubSubClient client(mqttServer, mqttPort, espClient);
